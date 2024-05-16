@@ -40,7 +40,7 @@ yarn --version
 switch to the repo folder
 
 ```sh
-cd rms-capstone-project
+cd rms-project-capstone
 ```
 
 ### 3. Install Dependency
