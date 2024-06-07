@@ -18,9 +18,9 @@ class DashboardController extends Controller
             'staff' => User::where('roles', '=', 'STAFF')->count(),
             'admin' => User::where('roles', '=', 'ADMIN')->count(),
             'tanggapan' => Response::count(),
-            'pending' => Concern_report::where('status', 'Belum di Proses')->count(),
-            'process' => Concern_report::where('status', 'Sedang di Proses')->count(),
-            'success' => Concern_report::where('status', 'Selesai')->count(),
+            'pending' => Concern_report::where('status', 'Pending')->count(),
+            'process' => Concern_report::where('status', 'In Process')->count(),
+            'success' => Concern_report::where('status', 'Done')->count(),
             'water_level' => Early_warning::latest('created_at')->pluck('status')->first(),
             'trash_level' => Trash::latest('created_at')->pluck('status')->first(),
         ]);

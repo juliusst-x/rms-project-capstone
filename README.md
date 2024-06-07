@@ -34,7 +34,7 @@ yarn --version
 
 -   Clone with `https`
     ```sh
-    https://github.com/juliusst-x/rms-project-capstone.git
+    https://github.com/juliusst-x/rms-capstone-project
     ```
 
 switch to the repo folder
@@ -107,4 +107,3 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-#

@@ -7,6 +7,7 @@ use App\Models\Concern_report;
 use App\Models\Tanggapan;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+
 class PengaduanController extends Controller
 {
     /**
@@ -17,20 +18,22 @@ class PengaduanController extends Controller
     public function index()
     {
         // Mengambil semua data dari tabel Concern_report
-        $items = Concern_report::all();
-    
+        $items = Concern_report::table('concern_reports as cr')
+            ->join('users', 'concern_reports.user_id', '=', 'users.id')
+            ->select('cr.*')
+            ->all();
+
         // Mengambil data User yang sesuai dengan nilai user_id di Concern_report menggunakan join
-        $users = DB::table('concern_reports')
-                    ->join('users', 'concern_reports.user_id', '=', 'users.id')
-                    ->select('users.*')
-                    ->get();
-    
+        // $users = DB::table('concern_reports')
+        //     ->join('users', 'concern_reports.user_id', '=', 'users.id')
+        //     ->select('users.*')
+        //     ->get();
+
         return view('pages.admin.pengaduan.index', [
-            'items' => $items,
-            'users' => $users
+            'items' => $items
+            // ,'users' => $users
         ]);
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -73,20 +76,21 @@ class PengaduanController extends Controller
     public function show($id)
     {
         $item = Concern_report::with([
-            'details', 'user'
+            'details',
+            'user'
         ])->findOrFail($id);
 
-        $tangap = Concern_report::where('id',$id)->first();
+        $tangap = Concern_report::where('id', $id)->first();
 
         $itemWithUser = Concern_report::join('users', 'concern_reports.user_id', '=', 'users.id')
-        ->select('concern_reports.*', 'users.name as user_name')
-        ->findOrFail($id);
+            ->select('concern_reports.*', 'users.name as user_name')
+            ->findOrFail($id);
 
 
-        return view('pages.admin.pengaduan.detail',[
+        return view('pages.admin.pengaduan.detail', [
             'item' => $item,
             'tangap' => $tangap,
-            'itemWithUser'=> $itemWithUser
+            'itemWithUser' => $itemWithUser
         ]);
     }
 
@@ -98,7 +102,7 @@ class PengaduanController extends Controller
      */
     public function edit($id)
     {
-       //
+        //
     }
 
     /**
