@@ -34,13 +34,13 @@ yarn --version
 
 -   Clone with `https`
     ```sh
-    https://github.com/juliusst-x/rms-capstone-project
+    https://github.com/juliusst-x/rms-project-capstone.git
     ```
 
 switch to the repo folder
 
 ```sh
-cd rms-capstone-project
+cd rms-project-capstone
 ```
 
 ### 3. Install Dependency
