@@ -29,7 +29,7 @@ class residentController extends Controller
             'name' => 'required|string|max:255|unique:users,username',
             'email' => 'required|string|email|max:255|unique:users,email',
             'phone' => ['required', 'numeric', 'digits_between:1,15'],
-            'address' => 'required|string|max:500',
+            // 'address' => 'required|string|max:500',
             'password' => 'required|string|confirmed|min:8',
         ], [
             'phone.numeric' => 'The phone number must be a valid number.', // Custom error message for non-numeric phone
@@ -82,7 +82,7 @@ class residentController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'phone' => ['required', 'numeric', 'digits_between:1,15'],
-            'address' => 'required|string|max:500',
+            // 'address' => 'required|string|max:500',
         ], [
             'phone.numeric' => 'The phone number must be a valid number.', // Custom error message for non-numeric phone
             'phone.digits_between' => 'The phone number must have between 1 and 15 digits.', // Custom error message for invalid number of digits

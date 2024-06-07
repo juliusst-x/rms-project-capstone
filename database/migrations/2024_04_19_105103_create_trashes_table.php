@@ -16,11 +16,13 @@ class CreateTrashesTable extends Migration
         Schema::create('trashes', function (Blueprint $table) {
             $table->id();
             $table->uuid('identifiers')->default(DB::raw('(UUID())'));
-            $table->integer('trash_level');
+            $table->integer('trash_level')->default(0);
+            $table->integer('threshold')->default(8);
             $table->integer('area_id');
-            $table->string('status');
+            $table->string('status')->default('Empty');
             $table->timestamp('Created_at')->useCurrent();
             $table->timestamp('Updated_at')->useCurrent();
+            $table->timestamp('Notif_at')->nullable();
         });
     }
 

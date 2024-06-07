@@ -16,11 +16,13 @@ class CreateEarlyWarningsTable extends Migration
         Schema::create('early_warnings', function (Blueprint $table) {
             $table->id();
             $table->uuid('identifiers')->default(DB::raw('(UUID())'));
-            $table->float('water_level');
+            $table->float('water_level')->default(0);
+            $table->integer('threshold')->default(20);
             $table->integer('area_id');
-            $table->string('status');
+            $table->string('status')->default('Safe');
             $table->timestamp('Created_at')->useCurrent();
             $table->timestamp('Updated_at')->useCurrent();
+            $table->timestamp('Notif_at')->nullable();
         });
     }
 

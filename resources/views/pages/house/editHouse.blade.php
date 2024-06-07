@@ -17,7 +17,6 @@ Edit House Data
 			</a>
 		</div>
 
-		{{$house}}
 
 		<form action="{{ route('house.update', $house->id) }}" method="POST" enctype="multipart/form-data">
 			@csrf
@@ -30,7 +29,7 @@ Edit House Data
 						name="user_id" required>
 						<option disabled selected>Select Resident Name</option>
 						@foreach($users as $userId => $userName)
-						<option value="{{ $userId }}" @if($userName==$house->user->name)
+						<option value="{{ $userId }}" @if($userName == $house->user->name)
 							selected
 							@endif
 							>{{ $userName }}</option>

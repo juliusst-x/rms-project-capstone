@@ -20,7 +20,7 @@ class staffController extends Controller
             return back();
         }
 
-        $data = User::whereIn('roles', ['STAFF', 'ADMIN'])->get();
+        $data = User::whereIn('roles', ['STAFF'])->get();
         return view('pages.admin.staff.staff', ['data' => $data]);
     }
 
@@ -59,10 +59,10 @@ class staffController extends Controller
             $user->save();
             db::commit();
 
-            Alert::success('Success', 'New Staff Added');
+            Alert::success('Success', 'New Officer Added');
             return redirect(route('staff.view'));
         } catch (\Throwable $th) {
-            Alert::error('error', 'Add Staff Failed');
+            Alert::error('error', 'Add Officer Failed');
             return redirect()->back()->with('error', 'Something went wrong!');
         }
 
@@ -77,22 +77,21 @@ class staffController extends Controller
     public function updateStaff(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:255|unique:table,column,except,id',
+            'name' => 'required|string|max:255|unique:users,identifiers',
             'email' => 'required|string|email|max:255|unique:users,identifiers',
             'phone' => ['required', 'numeric', 'digits_between:1,15'],
             'address' => 'required|string|max:500',
             'password' => 'nullable|string|confirmed|min:8',
-            'roles' => 'required|string|in:SECURITY,TRASHMAN,ADMIN'
+            'roles' => 'required|string|in:SECURITY,TRASHMAN'
         ], [
             'phone.numeric' => 'The phone number must be a valid number.', // Custom error message for non-numeric phone
             'phone.digits_between' => 'The phone number must have between 1 and 15 digits.', // Custom error message for invalid number of digits
         ]);
 
         try {
-
             db::beginTransaction();
-            $staff = User::where('identifiers', $id)->firstOrFail();
-
+            $staff = User::where('identifiers', $id)->first();
+            // dd($staff);
             $staff->name = $request->name;
             $staff->email = $request->email;
             $staff->phone = $request->phone;
@@ -115,7 +114,7 @@ class staffController extends Controller
             db::commit();
 
 
-            Alert::success('Success', 'Staff Updated');
+            Alert::success('Success', 'Officer Updated');
             return redirect()->route('staff.view');
         } catch (\Throwable $th) {
             //throw $th;
@@ -127,9 +126,9 @@ class staffController extends Controller
         $petugas = User::where('identifiers', $id)->firstOrFail();
         $petugas->delete();
 
-        Alert::success('Success', 'Staff Deleted');
+        Alert::success('Success', 'Officer Deleted');
         return redirect()->route('staff.view');
     }
 
-    
+
 }

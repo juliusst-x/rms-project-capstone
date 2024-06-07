@@ -32,7 +32,7 @@
     <div class="mt-3 mb-3">
       <h6>Nama : {{ $pengaduan->user->name }}</h6>
       <h6>Email : {{ $pengaduan->user->email }}</h6>      
-      <h6>No. Telepon : {{ $pengaduan->user->phone }}</h6>      
+      <h6>Phone Number : {{ $pengaduan->user->phone }}</h6>      
     </div>
 
     <table class="table table-bordered">

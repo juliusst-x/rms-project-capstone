@@ -10,4 +10,5 @@ Route::prefix('admin')
     ->group(function () {
         Route::get('/response/{id}', [responseController::class, 'index'])->name('response.view');
         Route::post('/response/{id}/create', [responseController::class, 'addResponse'])->name('response.create');
+        Route::post('/response/{id}/delete', [responseController::class, 'deleteResponse'])->name('response.delete');
     });

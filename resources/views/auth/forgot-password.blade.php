@@ -2,12 +2,12 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <img class="w-20 h-20" src="{{ asset('img/logo.svg')}} " alt="Logo">
+                <img class="w-20 h-20" src="img/rms2.png" alt="Logo">
             </a>
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('lupa kata sandi Anda? Tidak masalah. Beri tahu kami alamat email Anda dan kami akan mengirim email kepada Anda tautan reset kata sandi yang memungkinkan Anda memilih yang baru.') }}
+            {{ __('forgot your password? Does not matter. Tell us your email address and we will email you a password reset link that will allow you to choose a new one.') }}
         </div>
 
         <!-- Session Status -->
@@ -27,9 +27,9 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-           
+
                 <x-button class=" bg-blue-500 text-white font-bold rounded-md my-3 py-3 px-4 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:bg-blue-500 hover:scale-105 duration-300 ease-in-out">
-                     {{ __('Tautan Atur Ulang Kata Sandi Email') }}
+                    {{ __('Link to reset the password will be send on this Email') }}
                 </x-button>
             </div>
         </form>

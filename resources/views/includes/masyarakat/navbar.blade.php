@@ -10,34 +10,6 @@
 			</svg>
 		</button>
 
-		<nav>
-		</nav>
-		<div class="flex justify-center flex-1">
-			<a class="inline-flex items-center text-sm mr-5 font-semibold transition-colors duration-150 "
-				href="{{ url('user')}}">
-
-				<span class="ml-4">Dashboard</span>
-			</a>
-
-			<a class="inline-flex items-center text-sm mr-5 font-semibold transition-colors duration-150 "
-				href="{{ route('user_concern')}} ">
-
-				<span class="ml-4">Reports</span>
-			</a>
-
-			<a class="inline-flex items-center text-sm mr-5 font-semibold transition-colors duration-150 "
-				href="{{ url('user/floodWarning')}} ">
-
-				<span class="ml-4">Flood Warning</span>
-			</a>
-
-			<a class="inline-flex items-center text-sm mr-5 font-semibold transition-colors duration-150 "
-				href="{{ url('user/trash')}} ">
-
-				<span class="ml-4">Trash</span>
-			</a>
-		</div>
-
 		<ul class="flex items-center flex-shrink-2 space-x-6">
 			<!-- Theme toggler -->
 			<li class="flex">

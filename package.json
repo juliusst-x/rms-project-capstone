@@ -23,6 +23,7 @@
     "dependencies": {
         "@tailwindcss/postcss7-compat": "^2.0.2",
         "autoprefixer": "^9.8.6",
+        "jquery": "^3.7.1",
         "postcss-import": "^14.0.0",
         "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
     }

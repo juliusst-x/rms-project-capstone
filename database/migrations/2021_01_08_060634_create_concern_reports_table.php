@@ -21,9 +21,8 @@ class CreateConcernReportsTable extends Migration
             $table->integer('user_id');
             $table->text('description');
             $table->string('image');
-            $table->string('status')->default('Not yet Process');
+            $table->string('status')->default('Pending');
             $table->softDeletes();
-
             $table->timestamps();
         });
     }

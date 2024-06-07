@@ -8,7 +8,7 @@ House Data
 <main class="h-full pb-16 overflow-y-auto">
 	<div class="container px-6 mx-auto grid">
 		<h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-			House Add Form
+			Area Add Form
 		</h2>
 		<div class="my-4 mb-6">
 			<a href="{{ route('area.view')}} "
