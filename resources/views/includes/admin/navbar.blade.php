@@ -29,6 +29,7 @@
           </template>
         </button>
       </li>
+      
       <li class="flex">
         <p>{{ Auth::user()->name }} </p>
       </li>

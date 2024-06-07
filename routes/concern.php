@@ -10,4 +10,5 @@ Route::prefix('admin')
     ->group(function () {
         Route::get('concern', [concernController::class, 'adminIndex'])->name('admin-concern');
         Route::get('concern/{id}', [concernController::class, 'concernDetail'])->name('admin-concern-detail');
+        Route::delete('concern/{id}/delete', [concernController::class, 'deleteConcern'])->name('admin-concern-delete');
     });

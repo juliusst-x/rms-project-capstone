@@ -24,15 +24,15 @@ mycursor = mydb.cursor()
  
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Generate dataset >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 def generate_dataset(nbr):
-    face_classifier = cv2.CascadeClassifier("C:/Project/rms-capstone-project\camera/resources/haarcascade_frontalface_default.xml")
-#  "C:\Project\rms-capstone-project\camera\resources\haarcascade_frontalface_default.xml"
+    face_classifier = cv2.CascadeClassifier("C:/Users/Steven Julius/OneDrive/Desktop/rms/rms-capstone-project\camera/resources/haarcascade_frontalface_default.xml")
+ 
     def face_cropped(img):
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         faces = face_classifier.detectMultiScale(gray, 1.3, 5)
         # scaling factor=1.3
         # Minimum neighbor = 5
  
-        if faces is ():
+        if faces == ():
             return None
         for (x, y, w, h) in faces:
             cropped_face = img[y:y + h, x:x + w]
@@ -76,7 +76,7 @@ def generate_dataset(nbr):
 # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Train Classifier >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 @app.route('/train_classifier/<nbr>')
 def train_classifier(nbr):
-    dataset_dir = "C:/Project/rms-capstone-project/camera/dataset"
+    dataset_dir = "C:/Users/Steven Julius/OneDrive\Desktop/rms/rms-capstone-project/camera/dataset"
  
     path = [os.path.join(dataset_dir, f) for f in os.listdir(dataset_dir)]
     faces = []
@@ -142,8 +142,11 @@ def face_recognition():  # generate frame by frame from camera
                 if int(cnt) == 30:
                     cnt = 0
  
-                    mycursor.execute("insert into accs_hist (accs_date, accs_prsn) values('"+str(date.today())+"', '" + pnbr + "')")
+                    mycursor.execute("insert into accs_hist (accs_date, accs_prsn, accs_added) values('"+str(date.today())+"', '" + pnbr + "' ,  NOW())")
                     mydb.commit()
+                    
+                   
+
  
                     cv2.putText(img, pname + ' | ' + pskill, (x - 10, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (153, 255, 255), 2, cv2.LINE_AA)
                     time.sleep(1)
@@ -167,7 +170,7 @@ def face_recognition():  # generate frame by frame from camera
         coords = draw_boundary(img, faceCascade, 1.1, 10, (255, 255, 0), "Face", clf)
         return img
  
-    faceCascade = cv2.CascadeClassifier("C:/Project/rms-capstone-project\camera/resources/haarcascade_frontalface_default.xml")
+    faceCascade = cv2.CascadeClassifier("C:/Users/Steven Julius/OneDrive/Desktop/rms/rms-capstone-project\camera/resources/haarcascade_frontalface_default.xml")
     clf = cv2.face.LBPHFaceRecognizer_create()
     clf.read("classifier.xml")
  
@@ -212,10 +215,11 @@ def addprsn_submit():
     prsnbr = request.form.get('txtnbr')
     prsname = request.form.get('txtname')
     prsskill = request.form.get('optskill')
+    prsactive = request.form.get('prsactive')
+    prsadded = request.form.get('prsadded')
  
-    mycursor.execute("""INSERT INTO `prs_mstr` (`prs_nbr`, `prs_name`, `prs_role`) VALUES
-                    ('{}', '{}', '{}')""".format(prsnbr, prsname, prsskill))
-    mydb.commit()
+    mycursor.execute("""INSERT INTO prs_mstr (prs_nbr, prs_name, prs_role, prs_added) VALUES
+                    ('{}', '{}', '{}', NOW())""".format(prsnbr, prsname, prsskill))
  
     # return redirect(url_for('home'))
     return redirect(url_for('vfdataset_page', prs=prsnbr))

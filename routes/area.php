@@ -16,6 +16,4 @@ Route::prefix('admin')
         Route::put('areas/{id}/update', [AreaController::class, 'updateArea'])->name('area.update');
 
         Route::delete('/areas/{id}', [AreaController::class, 'delete'])->name('area.delete');
-
-
     });

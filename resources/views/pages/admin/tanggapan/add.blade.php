@@ -28,9 +28,9 @@ Response
           <select
             class="block w-full text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-red-400 focus:outline-none focus:shadow-outline-red dark:focus:shadow-outline-gray"
             name="status">
-            <option value="Belum di Proses">Belum di Proses</option>
-            <option value="Sedang di Proses">Sedang di Proses</option>
-            <option value="Selesai">Selesai</option>
+            <option value="Pending">Pending</option>
+						<option value="In Process">In Process</option>
+						<option value="Done">Done</option>
 
           </select>
         </label>
